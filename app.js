@@ -69,8 +69,11 @@ app.post("/compose", (req, res) => {
     postBody: req.body.journal_post
   })
 
-  postToInsert.save();
-  res.redirect("/");
+  postToInsert.save(function(err) {
+    if(!err) {
+      res.redirect("/");
+    }
+  });
 
 });
 
